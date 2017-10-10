@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="index.css">
+		<title>首页</title>
+	</head>
+	<body>
+		<!-- 做一个简单的网页检验封装效果 -->
+		<!-- 头部  导航  内容区域分为左侧和右侧 尾部-->
+		<header class="clearfix">
+			<span>
+				<a href="#">注册</a>
+				<a href="#">登录</a>
+			</span>
+		</header>
+		<!-- 导航可以做成组件 -->
+		<nav>
+			<ul class="clearfix">
+				<li><a class="link_a" href="#">首页</a></li>
+				<li><a class="link_a" href="#">第二页</a>
+					<ul class="second_l" class="clearfix">
+						<li><a class="link_a" href="#">二级页</a></li>
+					</ul>
+				</li>
+				<li><a class="link_a" href="#">第三页</a></li>
+			</ul>
+		</nav>
+
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="component.js"></script>
+		<script src="index.js"></script>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title></title>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/test.css" />
+</head>
+<body onload="drawKL();">
+	<div id="myDiv">1346</div>
+	<div class="highlight">
+		Hello!!!
+	</div>
+	<div class="highlight_H">
+		Have a nice day!!
+	</div>
+	<div class="highlight_L">
+		LAHALAHALAHA!!
+	</div>
+	<select id="combox"></select>
+	<input id="input1" type="text"/>
+	<div id="main" style="width: 1000px;height: 800px"></div>
+	<div class="selector"></div>
+	<!-- 弹窗 -->
+	<button>打开模态</button>
+	<div class="motai"></div>
+	<!-- <div class="wrap" style="position:relative;">
+		<canvas id="canvasKL" width="700" height="500">
+			<img src="" />
+			此浏览器不支持canvas
+		</canvas>
+		<canvas id="canvasKL_controller" width="918" height="60"></canvas>
+		<div id="canvasKL_crossLines_H" style="display: none; position: absolute; width: 918px; height: 1px; left: 383px; top: 2px; background-color: black; z-index: 21;"></div>
+		<div id="canvasKL_crossLines_V" style="display: none; position: absolute; height: 350px; width: 1px; left: 590px; top: 2px; background-color: black;"></div>
+		<div id="canvasKL_tip"></div>
+	</div> -->
+		<!-- <script src="require.js" defer async="true"></script> -->
+	<!-- <script src="require.js" data-main="main"></script> -->
+	<!-- <script src="http://pagead2.googlesyndication.com/pub-config/r20160913/ca-pub-2260568282752965.js"></script> -->
+	<script src="./js/echarts.min.js"></script>
+	<script src="./js/test.js"></script>
+	<script src="./json/data.json"></script>
+	<!-- <script src="./absPainter.js"></script>
+	<script src="./ajax.js"></script>
+	<script src="./axis-x.js"></script>
+	<script src="./axis-y.js"></script>
+	<script src="./controller.js"></script>
+	<script src="./k-data.js"></script>
+	<script src="./linepainter.js"></script>
+	<script src="./loading.js"></script>
+	<script src="./tip.js"></script>
+	<script src="./util.js"></script>
+	<script src="./volumenPainter.js"></script>
+	<script src="./crossLine.js"></script>
+	<script src="./chartEventHelper.js"></script>
+	<script src="./js/canvas.js"></script> -->
+	<script src="./js/chart.js"></script>
+	<!-- <script src="macd.js"></script> -->
+	<script type="text/javascript">
+		$('.highlight').highlight();
+		$('.highlight_H').highlight({foreground:"blue",background:"green"});
+		$("#input1").alertWhileClick(); 
+		$("#combox").combobox();
+		$(".selector").selectList({
+			placeholder:"选择试试"
+		});
+		$("button").showWin();
+		$(".motai").openWin();
+		// var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    	// document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe0c09a12211b95eae1f5244f2ac2afa3' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+</body>
+</html>
