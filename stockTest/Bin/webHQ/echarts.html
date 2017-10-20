@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/echarts.js"></script>
+    <script type="text/javascript" src="js/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/echartsTest.js"></script>
+    <style>
+        * {
+            list-style: none;
+            font-size: 14px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .navigation > ul li {
+            float: left;
+            background-color: azure;
+            width: 100px;
+            text-align: center;
+        }
+
+        .navigation > ul li:hover {
+            background-color: aquamarine;
+            cursor: pointer;
+        }
+
+        .navigation {
+            width: 550px;
+            height: 445px;
+            position: relative;
+            margin: auto;
+            margin-top: 100px;
+            border: solid 1px gray;
+        }
+
+        .navigation .active {
+            background-color: aquamarine;
+        }
+
+        .line {
+            position: absolute;
+            top: 15px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .marketTool {
+            height: 30px;
+            width: 100%;
+            position: relative;
+            top: 14px;
+            left: 15px;
+        }
+
+        .continer {
+            width: 550px;
+            height: 420px;
+            position: relative;
+        }
+
+        .toolContent {
+            position: absolute;
+            width: 160px;
+            left: 55px;
+            top: 25px;
+            border: solid 1px cornflowerblue;
+            display: none;
+        }
+        .marketTool li{
+            float: left;
+            padding: 0px 5px 0px 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navigation">
+
+    <ul>
+        <li class="active" link="continer">分时</li>
+        <li link="continer_K">日K</li>
+    </ul>
+
+    <!--分时图-->
+    <div class="line" id="marketM">
+        <div id="marketTool_M" class="marketTool">
+            <ul>
+                <li><span class="dataTime"></span></li>
+                <li>价格:<span class="dataPrice"></span></li>
+                <li>成交量:<span class="turnover"></span></li>
+                <li>涨跌幅:<span class="AD"></span></li>
+            </ul>
+        </div>
+        <div id="continerBox" class="continer">
+
+            <div id="continer" class="continer"></div>
+
+            <div id="toolContent" class="toolContent">
+                <ul>
+                    <li><span class="dataTime"></span></li>
+                    <li>价格:<span class="dataPrice"></span></li>
+                    <li>成交量:<span class="turnover"></span></li>
+                    <li>涨跌幅:<span class="AD"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="line" id="marketK" style="display: none;">
+
+        <div id="marketTool_K" class="marketTool">
+            <ul>
+                <li><span class="dataTime"></span></li>
+                <li>开:<span class="open"></span></li>
+                <li>高:<span class="highest"></span></li>
+                <li>收:<span class="close"></span></li>
+                <li>低:<span class="lowest"></span></li>
+                <li>量:<span class="turnover"></span></li>
+                <li>幅:<span class="AD"></span></li>
+            </ul>
+        </div>
+
+        <div id="continerBox_K" class="continer">
+
+            <div id="continer_K" class="continer"></div>
+
+            <div id="toolContent_K" class="toolContent">
+                <ul>
+                    <li><span class="dataTime"></span></li>
+                    <li>开:<span class="open"></span></li>
+                    <li>高:<span class="highest"></span></li>
+                    <li>收:<span class="close"></span></li>
+                    <li>低:<span class="lowest"></span></li>
+                    <li>量:<span class="turnover"></span></li>
+                    <li>幅:<span class="AD"></span></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+    $(function () {
+
+            $(".navigation li").click(function () {
+                $(".active").removeClass("active");
+                $(this).addClass("active");
+                var link = $(this).attr("link");
+                $(".line").hide();
+                $("#"+link).parents(".line").show();
+                mouseHoverPoint = 0;
+            });
+
+    })
+
+</script>
+
+</html>

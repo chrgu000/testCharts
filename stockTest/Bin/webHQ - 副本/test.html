@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Highcharts Example</title>
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            try {
+                if (socket == null || socket.readyState > 1) {
+                    var socket = new WebSocket('ws://172.17.20.203:7681');
+                } else {
+                    console.log('已经连接啦，请不要重复连接！');
+                }
+            } catch (e) {
+                console.log('' + e.data);
+                return;
+            }
+            socket.onopen = function (evt) {
+                alert("链接成功");
+                var a = {"MsgType":"S101","DesscriptionType":"3","ExchangeID":"101","InstrumentID":"0","Instrumenttype":"2"};
+                socket.send(JSON.stringify(a));
+            };
+            socket.onerror = function (evt) {
+
+            };
+            socket.onclose = function (evt) {
+            };
+            socket.onmessage = function (evt) {
+                var data = eval("(" + evt.data + ")");  // 将字符数据转换成json对象
+                console.log(data)
+
+            };
+        });
+
+
+    </script>
+</head>
+<body>
+<script src="js/highcharts/highcharts.js"></script>
+<!--<script src="../../js/modules/exporting.js"></script>-->
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+</body>
+
+</html>

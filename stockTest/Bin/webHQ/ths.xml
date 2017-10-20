@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<INSTRUMENTS>
+    <EXCHANGE id="101" code="THS" name="同花顺指数 ">
+        <PRODUCT code="INDEX" name="指数" type="1" ts="09:30-11:30;13:00-15:00">
+            <SECURITY id="1" code="1A0001" name="上证指数" code1="16:1A0001" />
+            <SECURITY id="2" code="399001" name="深证成指" code1="32:399001" />
+            <SECURITY id="3" code="399005" name="中小板指" code1="32:399005" />
+            <SECURITY id="4" code="399006" name="创业扳指" code1="32:399006" />
+            <SECURITY id="5" code="399300" name="沪深300" code1="32:399300" />
+        </PRODUCT>
+        <PRODUCT code="FOREIGN_INDEX" name="国际指数" type="4">
+            <SECURITY id="1000" code="STI" name="新加坡海峡指数" code1="169:STI" ts="09:00-17:00" />
+            <SECURITY id="1010" code="STI" name="新加坡海峡指数" code1="201:STI" ts="09:00-17:00" />
+            <SECURITY id="1015" code="AEX" name="荷兰aex指数" code1="88:AEX" ts="15:00-23:30" />
+            <SECURITY id="1016" code="AORD" name="ATX澳大利亚普通股指数" code1="88:AORD" ts="08:00-14:00" />
+            <SECURITY id="1017" code="ATX" name="奥地利ATX指数" code1="88:ATX" ts="15:20-23:35" />
+            <SECURITY id="1018" code="BFX" name="比利时bfx指数" code1="88:BFX" ts="15:14-23:35" />
+            <SECURITY id="1019" code="DJI" name="道琼斯工业平均指数" code1="88:DJI" ts="21:30-04:00" />
+            <SECURITY id="1020" code="FCHI" name="法国巴黎cac40指数" code1="88:FCHI" ts="15:00-23:30" />
+            <SECURITY id="1021" code="FTSE" name="伦敦金融时报100指数" code1="88:FTSE" ts="15:00-23:30" />
+            <SECURITY id="1022" code="GDAXI" name="法国法兰克福dax指数" code1="88:GDAXI" ts="15:00-23:30" />
+            <SECURITY id="1023" code="GSPTSE" name="多伦多股票交易所综合" code1="88:GSPTSE" ts="21:30-04:00" />
+            <SECURITY id="1024" code="HSZS" name="香港恒生指数" code1="88:HSZS" ts="09:30-12:00;13:00-16:00" />
+            <SECURITY id="1025" code="IBEX" name="西班牙ibex35" code1="88:IBEX" ts="15:00-23:35" />
+            <SECURITY id="1026" code="IBOV" name="圣保罗ibovespa指数" code1="88:IBOV" ts="22:00-04:15" />
+            <SECURITY id="1027" code="IXIC" name="纳斯达克综合指数" code1="88:IXIC" ts="21:30-04:00" />
+            <SECURITY id="1028" code="JKSE" name="印尼雅加达综合指数" code1="88:JKSE" ts="10:00-13:00;14:25-17:00" />
+            <SECURITY id="1029" code="KLSE" name="马来西亚吉隆坡指数" code1="88:KLSE" ts="09:00-12:15;14:15-17:00" />
+            <SECURITY id="1030" code="KS11" name="韩国综合指数" code1="88:KS11" ts="08:01-14:02" />
+            <SECURITY id="1031" code="MERV" name="阿根廷merv指数" code1="88:MERV" ts="22:00-04:00" />
+            <SECURITY id="1032" code="MIB" name="意大利mib指数" code1="88:MIB" ts="15:00-23:30" />
+            <SECURITY id="1033" code="MXX" name="墨西哥mxx指数" code1="88:MXX" ts="21:35-04:00" />
+            <SECURITY id="1034" code="N225" name="东京日经225指数" code1="88:N225" ts="08:00-10:30;11:30-14:00" />
+            <SECURITY id="1035" code="NYA" name="纽约证交所综合指数" code1="88:NYA" ts="21:30-04:00" />
+            <SECURITY id="1036" code="NZ50" name="新西兰股市nz50指数" code1="88:NZ50" ts="06:00-12:40" />
+            <SECURITY id="1037" code="OMXSPI" name="瑞典omxspi指数" code1="88:OMXSPI" ts="15:00-23:30" />
+            <SECURITY id="1038" code="OSEAX" name="挪威oseax指数" code1="88:OSEAX" ts="15:00-22:30" />
+            <SECURITY id="1039" code="RTS" name="俄罗斯rts指数" code1="88:RTS" ts="15:00-21:45" />
+            <SECURITY id="1040" code="SENSEX" name="印度孟买sensex指数" code1="88:SENSEX" ts="11:45-17:47" />
+            <SECURITY id="1041" code="SET" name="曼谷泰证指数" code1="88:SET" ts="11:00-13:30;15:30-17:30" />
+            <SECURITY id="1042" code="SPX" name="标准普尔500指数" code1="88:SPX" ts="21:30-04:00" />
+            <SECURITY id="1043" code="SSMI" name="瑞士苏黎士市场指数" code1="88:SSMI" ts="15:00-23:30" />
+            <SECURITY id="1044" code="STI" name="新加坡海峡指数" code1="88:STI" ts="09:00-17:00" />
+            <SECURITY id="1045" code="TA100" name="以色列ta-100指数" code1="88:TA100" ts="15:45-22:23" />
+            <SECURITY id="1046" code="TWII" name="台湾加权指数" code1="88:TWII" ts="09:00-13:30" />
+            <SECURITY id="1047" code="XAX" name="美国证交所" code1="88:XAX" ts="21:30-04:00" />
+            <SECURITY id="1048" code="USDIND" name="美元指数" code1="97:USDIND" ts="08:00-07:59" />
+        </PRODUCT>
+    </EXCHANGE>
+</INSTRUMENTS>

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+ <script>
+
+ 
+Date.prototype.format = function(format) {
+       var date = {
+              "M+": this.getMonth() + 1,
+              "d+": this.getDate(),
+              "h+": this.getHours(),
+              "m+": this.getMinutes(),
+              "s+": this.getSeconds(),
+              "q+": Math.floor((this.getMonth() + 3) / 3),
+              "S+": this.getMilliseconds()
+       };
+       if (/(y+)/i.test(format)) {
+              format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+       }
+       for (var k in date) {
+              if (new RegExp("(" + k + ")").test(format)) {
+                     format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                            ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+              }
+       }
+       return format;
+}
+// 时间戳转标准日期字符
+function timeStampToDatetime(timestamp) {
+    if(!timestamp && !isNaN(timestamp)) {
+        return "";
+    }
+    var newDate = new Date();
+    if (timestamp.length == 10)
+    {
+        newDate.setTime(timestamp * 1000);
+    } else {
+        newDate.setTime(timestamp);
+    }
+    return newDate.format('yyyy-MM-dd h:mm:ss');
+}
+
+// 时间戳转标准日期字符
+function timeStampToDate(timestamp) {
+    if(!timestamp && !isNaN(timestamp)) {
+        return "";
+    }
+    var newDate = new Date();
+    if (timestamp.length == 10)
+    {
+        newDate.setTime(timestamp * 1000);
+    } else {
+        newDate.setTime(timestamp);
+    }
+    return newDate.format('yyyy-MM-dd');
+}
+// 时间戳转标准时间字符
+function timeStampToTime(timestamp) {
+    if(!timestamp && !isNaN(timestamp)) {
+        return "";
+    }
+    var newDate = new Date();
+    if (timestamp.length == 10)
+    {
+        newDate.setTime(timestamp * 1000);
+    } else {
+        newDate.setTime(timestamp);
+    }
+    return newDate.format('hh:mm:ss');
+}
+
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURIComponent(r[2]); return null;
+}
+// K线基础数据对象
+function lineKObj(date, open, high, low, close, volume) {
+    this.d = date;
+    this.o = open;
+    this.h = high;
+    this.l = low;
+    this.c = close ;
+    this.v = volume;
+}
+/*
+K线数据分解
+function getKline(data) {
+    var klines = [];
+    if (data.klines) {
+        for(var i = 0 ;i< data.klines.length; i++) {
+            var sub = data.klines[i].split(",");
+            klines[i] = new lineKObj(data.period > 7 ? timeStampToDate(sub[0]): timeStampToDatetime(sub[0]), sub[1], sub[2], sub[3], sub[4], sub[5]);
+        }
+    }
+    return klines;
+}
+// 分时数据分解
+function getMline(minutes) {
+    var jsonData = "";
+    var lastVolume = 0;
+    for(var i=0; i< minutes.length; i++) {
+        var minute = minutes[i].split(",");
+        jsonData = jsonData + timeStampToTime(minute[0]) + "," + (minute[2] - lastVolume) +",0," + minute[1] + ( i == minutes.length -1 ? "" : ";");
+        lastVolume = minute[2];
+    }
+    return jsonData;
+}
+
+// 个股行情的 基础分解 （参考 行情数据的位置。 此方法不能使用）
+function getStockBaseInfo(quote) {
+    var baseArray = quote.split(",");
+
+	baseInfo = baseInfo.replace("$prevclose", baseArray[2]);
+    baseInfo = baseInfo.replace("$quoteDatetime", timeStampToDatetime(baseArray[1])).replace("$openPrice", baseArray[3]);
+    baseInfo = baseInfo.replace("$highPrice", baseArray[4]).replace("$lowPrice", baseArray[5]);
+    baseInfo = baseInfo.replace("$newPrice", baseArray[6]).replace("$totalVolume", baseArray[7]);
+    return baseInfo;
+}
+*/
+
+function WebSocketAPI() {
+    "use strict";
+    var socket = null;
+    var readyState = new Array("正在连接", "已建立连接", "正在关闭连接", "已关闭连接");
+    var connection = "{\"type\":8193,\"address\":\"data11.120918.com\",\"port\":6051}"; // 服务器配置
+    var login = "{\"type\": 16385}"; // 登陆口令
+    var mLineQuery = "{\"type\":45070,\"code\":$code,\"lastvolume\":0}"; // 分时线请求串
+    var kLineQuery = "{\"type\":20490,\"code\":$code,\"period\":$period,\"mode\":1,\"offset\":0,\"num\":$num,\"multiday\":5,\"power\":0}";  // K线请求串
+    var logined = false;
+	// 订阅行情请求串
+    var getOrderQuery = function(codes) {
+        return "{\"type\":45057,\"group\":\"test\",\"codes\":["+codes+"]}";
+    }
+	// 页面加载时 连接行情服务器。
+    try {
+        if (socket == null || socket.readyState > 1) {
+            socket = new WebSocket('ws://127.0.0.1:6011');
+        } else {
+            showContent('已经连接啦，请不要重复连接！');
+        }
+    } catch (e) {
+        showContent('' + e.data);
+        return;
+    }
+    socket.onopen = function(evt) {
+        socket.send(connection);
+    }
+    socket.onerror = function(evt) { logined = false; };
+    socket.onclose = function(evt) {};
+    socket.onmessage = function(evt) {
+        var data = eval("(" + evt.data + ")");  // 将字符数据转换成json对象
+        if (!data && !data.type)
+        {
+            return;
+        }
+        // 数据回调
+        switch(data.type) {
+            case 8193 :	socket.send(login); break; 
+            case 16385 : logined = true; showContent("服务连接成功"); break;
+            case 45058 : showContent("个股行情数据：" + evt.data); break;
+            case 45070 : showContent("分时线数据：" + evt.data); break;
+            case 20490 : showContent("K线数据：" + evt.data); break;
+            case 20485 : break; // rank
+        }
+    }
+    
+	// 请求股票行情
+    socket.requestQuote = function(codes) {
+        logined && socket.send(getOrderQuery(codes));
+    }
+	// 请求分时线
+    socket.requestMLine = function(code) {
+        logined && socket.send(mLineQuery.replace("$code", code));
+    }
+	// 请求K线
+    socket.requestKLine = function(code, period, num) {
+        logined && socket.send(kLineQuery.replace("$code", code).replace("$period", period ? period : 8).replace("$num", num ? num : 241));
+    }
+    return socket;
+}
+var webSocket = new WebSocketAPI();
+
+function getQuote() {
+       webSocket.requestQuote(document.getElementById("codes").value);
+}
+
+function getMline() {
+       webSocket.requestMLine(document.getElementById("codes").value);
+}
+
+function getKline() {
+       webSocket.requestKLine(document.getElementById("codes").value);
+}
+
+function showContent(content) {			
+		document.getElementById("content").innerHTML= document.getElementById("content").innerHTML + "<br>" + content;
+        webSocket.send('{"type":20485,"rankingtype":61,"blockname":"沪深A股","item":5,"direct":0, "start":0,"count":20}');
+}
+ </script>
+ <input id="codes" type="text" value="股票代码"> 多个代码以","分隔(限个股行情)<br>
+ <button onclick="getQuote()">获取个股行情</button><br>
+ <button onclick="getMline()">获取分时行情</button><br>
+ <button onclick="getKline()">获取K线行情</button><br>
+ <span id="content">内容显示</span>
+ </body>
+</html>
